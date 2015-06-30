@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
-    let myBeaconRegion : CLBeaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "4568D9B6-F3F8-4E99-9AB6-350D92825A2E"), identifier:"com.ef.myRegion")
+    var myBeaconRegion : CLBeaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "4568D9B6-F3F8-4E99-9AB6-350D92825A2E"), identifier:"com.ef.myRegion")
     var locationManager : CLLocationManager = CLLocationManager()
     
     @IBOutlet weak var statusLabel: UILabel!
@@ -25,16 +25,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        //fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //statusLabel.backgroundColor = UIColor(red: 0, green: 12, blue: 12, alpha: 1)
+        //statusLabel.backgroundColor = UIColor(red: 0, green: 100, blue: 100, alpha: 1)
         locationManager.delegate = self
         if (CLLocationManager.authorizationStatus() != CLAuthorizationStatus.AuthorizedWhenInUse) { locationManager.requestAlwaysAuthorization() }
         locationManager.startUpdatingLocation()
         locationManager.startMonitoringForRegion(myBeaconRegion)
+        locationManager(locationManager, didStartMonitoringForRegion: myBeaconRegion as CLBeaconRegion)
+        println("Hey")
     }
     
     func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
@@ -44,12 +45,28 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
         locationManager.stopRangingBeaconsInRegion(myBeaconRegion)
+        statusLabel.backgroundColor = UIColor(red: 0, green: 100, blue: 100, alpha: 1)
+    }
+    
+    func locationManager(manager: CLLocationManager!, didStartMonitoringForRegion region: CLRegion!) {
+        locationManager.startRangingBeaconsInRegion(myBeaconRegion)
     }
     
     func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
-        if(beacons.count < 1){return}
+//        if(beacons.count < 1){return}
         if(alreadyInRegion == 0){/*notify the user*/ alreadyInRegion++}
-        var beacon : CLBeacon = beacons[0] as CLBeacon
+        var beacon :CLBeacon = CLBeacon()
+        if(beacons.count < 1){
+            statusLabel.text = "Disconnected"
+            statusLabel.backgroundColor = UIColor(red: 0, green: 255, blue: 0, alpha: 1)
+            UUIDLabel.text = "null"
+            MajorLabel.text = "null"
+            MinorLabel.text = "null"
+            AccuracyLabel.text = "-1"
+            RSSILabel.text = "0"
+            return
+        }
+        beacon = beacons[0] as CLBeacon
         statusLabel.text = "Connected"
         statusLabel.backgroundColor = UIColor(red: 0, green: 78, blue: 12, alpha: 1)
         UUIDLabel.text = beacon.proximityUUID.UUIDString
@@ -72,7 +89,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
