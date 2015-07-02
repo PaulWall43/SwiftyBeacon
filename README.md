@@ -1,2 +1,2 @@
-# SwiftBeacon
-Foundation for swift application at Education First
+# SwiftyBeacon
+One For All, One For All and Kenneth
