@@ -17,28 +17,19 @@ class EventTableViewController: UITableViewController {
         return Singleton.instance
     }
     
+    var color : UIColor?
     var eventItems : NSMutableArray = []
     var informationSource : BeaconFinder = BeaconFinder.SharedInstance
     //let rootViewController : RootViewController = RootViewController()
     
     func loadinitialData(){
-//        //println(toDoItems)
-//        var item1 = ToDoItem(title: "Vocabulary Lesson")
-//        self.eventItems.addObject(item1)
-//        
-//        var item2 = ToDoItem(title: "Addition")
-//        self.eventItems.addObject(item2)
-//        
-        var item3 = ToDoItem(title: "Mathematics")
-        self.eventItems.addObject(item3)
-
     }
     
     override func viewDidLoad() {
         self.loadinitialData()
-        println(informationSource.contentArray)
-        var testToDoItem = ToDoItem(title: informationSource.contentArray.firstObject as String)
-        eventItems.addObject(testToDoItem)
+        if(informationSource.contentArray.count > 0){
+            eventItems.addObjectsFromArray(informationSource.contentArray)
+        }
     }
     func getControllerArrayContents(sourceArray source: NSMutableArray){
         //eventItems.addObjectsFromArray(informationSource.contentArray
@@ -57,9 +48,9 @@ class EventTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let CellIdentifier: NSString = "ToDoPrototypeCell"
         var cell : UITableViewCell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as UITableViewCell
-        var todoitem: ToDoItem  = self.eventItems.objectAtIndex(indexPath.row) as ToDoItem
-        cell.textLabel?.text = todoitem.title;
-        if todoitem.completed{
+        var eventModel: EventModel  = self.eventItems.objectAtIndex(indexPath.row) as EventModel
+        cell.textLabel?.text = eventModel.title;
+        if eventModel.completed{
             cell.accessoryType = .Checkmark
         }
         else {
@@ -70,7 +61,7 @@ class EventTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        var tappedItem: ToDoItem = self.eventItems.objectAtIndex(indexPath.row) as ToDoItem
+        var tappedItem: EventModel = self.eventItems.objectAtIndex(indexPath.row) as EventModel
         tappedItem.completed = !tappedItem.completed
         tableView.reloadData()
     }

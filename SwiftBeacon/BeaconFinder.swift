@@ -36,6 +36,8 @@ class BeaconFinder: NSObject, CLLocationManagerDelegate {
         locationManager.startRangingBeaconsInRegion(myBeaconRegion)
         //locationManager(locationManager, didStartMonitoringForRegion: myBeaconRegion)
         requestNotificationAuth()
+        /*Test Call*/
+        //contentArray.addObject(EventModel(title: "John"))
     }
     
     func requestNotificationAuth(){

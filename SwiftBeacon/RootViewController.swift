@@ -13,7 +13,7 @@ class RootViewController: UIViewController {
     
 
     
-    var toDoItemArray : NSMutableArray = [] //just keeping for now
+    var eventModelArray : NSMutableArray = [] //just keeping for now
     let beaconFinder : BeaconFinder = BeaconFinder.SharedInstance
     
     @IBOutlet weak var eventsHostingButton: UIButton!
@@ -30,16 +30,15 @@ class RootViewController: UIViewController {
         return 1
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //println(toDoItemArray.count)
-        return toDoItemArray.count
+        return eventModelArray.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier : String = "testTableCell"
         var testCell : UITableViewCell = tableView.dequeueReusableCellWithIdentifier("testTableCell") as UITableViewCell
-        var testToDoItem : ToDoItem = self.toDoItemArray.objectAtIndex(indexPath.row) as ToDoItem
-        testCell.textLabel?.text = testToDoItem.title
-        if testToDoItem.completed{
+        var testEventModel : EventModel = self.eventModelArray.objectAtIndex(indexPath.row) as EventModel
+        testCell.textLabel?.text = testEventModel.title
+        if testEventModel.completed{
             testCell.accessoryType = .Checkmark
         }
         else{
@@ -51,7 +50,7 @@ class RootViewController: UIViewController {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         testTableView.deselectRowAtIndexPath(indexPath, animated: false)
-        var tappedItem :ToDoItem = toDoItemArray.objectAtIndex(indexPath.row) as ToDoItem
+        var tappedItem : EventModel = eventModelArray.objectAtIndex(indexPath.row) as EventModel
         tappedItem.completed = !tappedItem.completed
         testTableView.reloadData()
     }
