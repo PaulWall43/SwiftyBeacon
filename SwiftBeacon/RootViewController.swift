@@ -9,100 +9,51 @@
 import UIKit
 import CoreLocation
 
-class RootViewController: UIViewController, CLLocationManagerDelegate {
-    var myBeaconRegion : CLBeaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "4568D9B6-F3F8-4E99-9AB6-350D92825A2E"), identifier:"com.ef.myRegion")
-    var locationManager : CLLocationManager = CLLocationManager()
-    var alreadyInRegion : Int = 0
+class RootViewController: UIViewController {
+    
+
+    
+    var toDoItemArray : NSMutableArray = [] //just keeping for now
+    let beaconFinder : BeaconFinder = BeaconFinder()
+    
     @IBOutlet weak var eventsHostingButton: UIButton!
     @IBOutlet weak var eventsAttendingButton: UIButton!
     @IBOutlet weak var addOrEditEventButton: UIButton!
     @IBOutlet weak var eventsHappeningNowButton: UIButton!
     @IBOutlet weak var testTableView: UITableView!
     
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.delegate = self
-        if (CLLocationManager.authorizationStatus() != CLAuthorizationStatus.AuthorizedWhenInUse) {
-            locationManager.requestAlwaysAuthorization()
-            //println("requesting")
-         }
-        locationManager.startUpdatingLocation()
-        locationManager.startMonitoringForRegion(myBeaconRegion)
-        locationManager.startRangingBeaconsInRegion(myBeaconRegion)
-        //locationManager(locationManager, didStartMonitoringForRegion: myBeaconRegion)
-        requestNotificationAuth()
     }
     
-    
-    func notifyUser(description aDescription: String){
-        var currentSettings = UIApplication.sharedApplication().currentUserNotificationSettings()
-        UIApplication.sharedApplication().registerUserNotificationSettings(currentSettings)
-        var notification = UILocalNotification()
-        notification.alertBody = aDescription
-        notification.alertAction = "Notifications are working"
-        notification.soundName = UILocalNotificationDefaultSoundName
-        UIApplication.sharedApplication().presentLocalNotificationNow(notification)
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //println(toDoItemArray.count)
+        return toDoItemArray.count
     }
     
-    func requestNotificationAuth(){
-        var types = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound
-        var mySettings = UIUserNotificationSettings(forTypes: types, categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(mySettings)
-    }
-    
-//    func locationManager(manager: CLLocationManager!, didStartMonitoringForRegion region: CLRegion!) {
-//        locationManager.startRangingBeaconsInRegion(myBeaconRegion)
-//    }
-    
-    func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
-        locationManager.startRangingBeaconsInRegion(myBeaconRegion)
-        //println("DEnterR from Root")
-    }
-    
-    func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
-        locationManager.stopRangingBeaconsInRegion(myBeaconRegion)
-        notifyUser(description:"See ya later!")
-        alreadyInRegion = 0;
-        //println("DExitR from Root")
-    }
-    
-    func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
-        var beacon :CLBeacon = CLBeacon()
-        if(beacons.count < 1){
-            return
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cellIdentifier : String = "testTableCell"
+        var testCell : UITableViewCell = tableView.dequeueReusableCellWithIdentifier("testTableCell") as UITableViewCell
+        var testToDoItem : ToDoItem = self.toDoItemArray.objectAtIndex(indexPath.row) as ToDoItem
+        testCell.textLabel?.text = testToDoItem.title
+        if testToDoItem.completed{
+            testCell.accessoryType = .Checkmark
         }
-        if(alreadyInRegion == 0){
-            notifyUser(description: "Welcome to your zone!")
-            sendUserInfo()
-            //println("notify from range")
-            alreadyInRegion++;
+        else{
+            testCell.accessoryType = .None;
         }
+        return testCell
+    }
+    
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        testTableView.deselectRowAtIndexPath(indexPath, animated: false)
+        var tappedItem :ToDoItem = toDoItemArray.objectAtIndex(indexPath.row) as ToDoItem
+        tappedItem.completed = !tappedItem.completed
+        testTableView.reloadData()
+    }
 
-    }
-    
-    func sendUserInfo(){
-        //create a file path to the json file
-        var jsonFilePath : String = NSBundle.mainBundle().pathForResource("testData", ofType: "json")!
-        //Create a data object from this file path
-        var jsonData : NSData = NSData(contentsOfFile: jsonFilePath)!
-        //set NSError to nil
-        var jsonError :NSError?
-        //Create a swift object of these objects
-        var swiftObject : AnyObject = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.AllowFragments, error: &jsonError)!
-        //cast this down to a know type whatever it may be and log the result
-        if let nsDictionaryObject = swiftObject as? NSDictionary {
-            if let swiftDictionary = nsDictionaryObject as Dictionary? {
-                println(swiftDictionary)
-            }
-        }
-        if let nsArrayObject = swiftObject as? NSArray {
-            if let swiftArray = nsArrayObject as Array? {
-                println(swiftArray)
-            }
-        }
-    }
 }

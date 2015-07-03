@@ -9,9 +9,9 @@
 import Foundation
 
 class ToDoItem: NSObject {
-    var completed : Bool = false;
-    var subTopic : Bool = true;
     var title : NSString!
+    var subTopic : Bool = false;
+    var completed : Bool = false;
     
     init(title:String){
         self.title = title

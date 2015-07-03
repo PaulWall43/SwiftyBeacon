@@ -14,8 +14,9 @@
 		7108664C1B4228E100CE6090 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7108664A1B4228E100CE6090 /* LaunchScreen.xib */; };
 		710866581B4228E100CE6090 /* SwiftBeaconTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710866571B4228E100CE6090 /* SwiftBeaconTests.swift */; };
 		710866621B422CA400CE6090 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 710866611B422CA400CE6090 /* CoreLocation.framework */; };
-		716C9E1C1B42719200C9AB9A /* ToDoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716C9E1B1B42719200C9AB9A /* ToDoTableViewController.swift */; };
+		716C9E1C1B42719200C9AB9A /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716C9E1B1B42719200C9AB9A /* EventTableViewController.swift */; };
 		716C9E1E1B4273B700C9AB9A /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716C9E1D1B4273B700C9AB9A /* ToDoItem.swift */; };
+		71ADFC401B4655DD00875924 /* BeaconFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71ADFC3F1B4655DD00875924 /* BeaconFinder.swift */; };
 		71B566681B44CBE0000258C9 /* testData.json in Resources */ = {isa = PBXBuildFile; fileRef = 71B566671B44CBE0000258C9 /* testData.json */; };
 		71D4EBB71B43E0AB00B2A3D2 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D4EBB61B43E0AB00B2A3D2 /* RootViewController.swift */; };
 /* End PBXBuildFile section */
@@ -42,8 +43,9 @@
 		710866561B4228E100CE6090 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		710866571B4228E100CE6090 /* SwiftBeaconTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBeaconTests.swift; sourceTree = "<group>"; };
 		710866611B422CA400CE6090 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		716C9E1B1B42719200C9AB9A /* ToDoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTableViewController.swift; sourceTree = "<group>"; };
+		716C9E1B1B42719200C9AB9A /* EventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
 		716C9E1D1B4273B700C9AB9A /* ToDoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
+		71ADFC3F1B4655DD00875924 /* BeaconFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconFinder.swift; sourceTree = "<group>"; };
 		71B566671B44CBE0000258C9 /* testData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = testData.json; path = ../testData.json; sourceTree = "<group>"; };
 		71D4EBB61B43E0AB00B2A3D2 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,7 +91,8 @@
 		7108663E1B4228E000CE6090 /* SwiftBeacon */ = {
 			isa = PBXGroup;
 			children = (
-				716C9E1B1B42719200C9AB9A /* ToDoTableViewController.swift */,
+				71ADFC3F1B4655DD00875924 /* BeaconFinder.swift */,
+				716C9E1B1B42719200C9AB9A /* EventTableViewController.swift */,
 				716C9E1D1B4273B700C9AB9A /* ToDoItem.swift */,
 				710866411B4228E100CE6090 /* AppDelegate.swift */,
 				71D4EBB61B43E0AB00B2A3D2 /* RootViewController.swift */,
@@ -230,8 +233,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				71D4EBB71B43E0AB00B2A3D2 /* RootViewController.swift in Sources */,
+				71ADFC401B4655DD00875924 /* BeaconFinder.swift in Sources */,
 				710866441B4228E100CE6090 /* DebugViewController.swift in Sources */,
-				716C9E1C1B42719200C9AB9A /* ToDoTableViewController.swift in Sources */,
+				716C9E1C1B42719200C9AB9A /* EventTableViewController.swift in Sources */,
 				716C9E1E1B4273B700C9AB9A /* ToDoItem.swift in Sources */,
 				710866421B4228E100CE6090 /* AppDelegate.swift in Sources */,
 			);
