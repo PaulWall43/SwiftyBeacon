@@ -22,9 +22,9 @@ class BeaconFinder: NSObject, CLLocationManagerDelegate {
    var myBeaconRegion : CLBeaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "4568D9B6-F3F8-4E99-9AB6-350D92825A2E"), identifier:"com.ef.myRegion")
     var locationManager : CLLocationManager = CLLocationManager()
     var alreadyInRegion : Int = 0
-    internal var contentsArray : NSMutableArray = []
+    internal var contentArray : NSMutableArray = []
     
-    override init(){
+    private override init(){
         super.init()
         locationManager.delegate = self
         if (CLLocationManager.authorizationStatus() != CLAuthorizationStatus.AuthorizedWhenInUse) {
@@ -42,7 +42,6 @@ class BeaconFinder: NSObject, CLLocationManagerDelegate {
         var types = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound
         var mySettings = UIUserNotificationSettings(forTypes: types, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(mySettings)
-        println("Hi from sweden")
     }
     
     func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
@@ -89,9 +88,9 @@ class BeaconFinder: NSObject, CLLocationManagerDelegate {
         var jsonData : NSData = NSData(contentsOfFile: jsonFilePath)!
         var json = JSON(data: jsonData)
         if let employeeName = json["employees"][0]["firstName"].string {
-            contentsArray.addObject(employeeName)
+            contentArray.addObject(employeeName)
         }
-        println(contentsArray)
+        //println(contentArray)
         //println("I'm here")
         //set NSError to nil
 //        var jsonError : NSError?
@@ -111,7 +110,7 @@ class BeaconFinder: NSObject, CLLocationManagerDelegate {
         
         /* Differet set of testing */
 //        var testToDoItem : ToDoItem = ToDoItem(title: "Get wrecked")
-//        contentsArray.addObject(testToDoItem)
+//        contentArray.addObject(testToDoItem)
         /* End of testing */
     }
 }

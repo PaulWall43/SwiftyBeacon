@@ -14,7 +14,7 @@ class RootViewController: UIViewController {
 
     
     var toDoItemArray : NSMutableArray = [] //just keeping for now
-    let beaconFinder : BeaconFinder = BeaconFinder()
+    let beaconFinder : BeaconFinder = BeaconFinder.SharedInstance
     
     @IBOutlet weak var eventsHostingButton: UIButton!
     @IBOutlet weak var eventsAttendingButton: UIButton!

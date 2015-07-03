@@ -36,13 +36,13 @@ class EventTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         self.loadinitialData()
-        println(informationSource.contentsArray)
-        var testToDoItem = ToDoItem(title: informationSource.contentsArray.firstObject as String)
+        println(informationSource.contentArray)
+        var testToDoItem = ToDoItem(title: informationSource.contentArray.firstObject as String)
         eventItems.addObject(testToDoItem)
     }
     func getControllerArrayContents(sourceArray source: NSMutableArray){
-        //eventItems.addObjectsFromArray(informationSource.contentsArray
-        //eventItems = informationSource.contentsArray
+        //eventItems.addObjectsFromArray(informationSource.contentArray
+        //eventItems = informationSource.contentArray
     }
     
     
