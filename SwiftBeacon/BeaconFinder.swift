@@ -87,25 +87,31 @@ class BeaconFinder: NSObject, CLLocationManagerDelegate {
         var jsonFilePath : String = NSBundle.mainBundle().pathForResource("testData", ofType: "json")!
         //Create a data object from this file path
         var jsonData : NSData = NSData(contentsOfFile: jsonFilePath)!
+        var json = JSON(data: jsonData)
+        if let employeeName = json["employees"][0]["firstName"].string {
+            contentsArray.addObject(employeeName)
+        }
+        println(contentsArray)
+        //println("I'm here")
         //set NSError to nil
-        var jsonError : NSError?
-        //Create a swift object of these objects
-        var swiftObject : AnyObject = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.AllowFragments, error: &jsonError)!
+//        var jsonError : NSError?
+//        //Create a swift object of these objects
+//        var swiftObject : AnyObject = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.AllowFragments, error: &jsonError)!
         //cast this down to a know type whatever it may be and log the result
-        if let nsDictionaryObject = swiftObject as? NSDictionary {
-            if let swiftDictionary = nsDictionaryObject as Dictionary? {
-                println(swiftDictionary)
-            }
-        }
-        if let nsArrayObject = swiftObject as? NSArray {
-            if let swiftArray = nsArrayObject as Array? {
-                println(swiftArray)
-            }
-        }
+//        if let nsDictionaryObject = swiftObject as? NSDictionary {
+//            if let swiftDictionary = nsDictionaryObject as Dictionary? {
+//                println(swiftDictionary)
+//            }
+//        }
+//        if let nsArrayObject = swiftObject as? NSArray {
+//            if let swiftArray = nsArrayObject as Array? {
+//                println(swiftArray)
+//            }
+//        }
         
         /* Differet set of testing */
-        var testToDoItem : ToDoItem = ToDoItem(title: "Get wrecked")
-        contentsArray.addObject(testToDoItem)
+//        var testToDoItem : ToDoItem = ToDoItem(title: "Get wrecked")
+//        contentsArray.addObject(testToDoItem)
         /* End of testing */
     }
 }

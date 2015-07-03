@@ -17,6 +17,7 @@
 		716C9E1C1B42719200C9AB9A /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716C9E1B1B42719200C9AB9A /* EventTableViewController.swift */; };
 		716C9E1E1B4273B700C9AB9A /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716C9E1D1B4273B700C9AB9A /* ToDoItem.swift */; };
 		71ADFC401B4655DD00875924 /* BeaconFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71ADFC3F1B4655DD00875924 /* BeaconFinder.swift */; };
+		71ADFC421B46961600875924 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71ADFC411B46961600875924 /* SwiftyJSON.swift */; };
 		71B566681B44CBE0000258C9 /* testData.json in Resources */ = {isa = PBXBuildFile; fileRef = 71B566671B44CBE0000258C9 /* testData.json */; };
 		71D4EBB71B43E0AB00B2A3D2 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D4EBB61B43E0AB00B2A3D2 /* RootViewController.swift */; };
 /* End PBXBuildFile section */
@@ -46,6 +47,7 @@
 		716C9E1B1B42719200C9AB9A /* EventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
 		716C9E1D1B4273B700C9AB9A /* ToDoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
 		71ADFC3F1B4655DD00875924 /* BeaconFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconFinder.swift; sourceTree = "<group>"; };
+		71ADFC411B46961600875924 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		71B566671B44CBE0000258C9 /* testData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = testData.json; path = ../testData.json; sourceTree = "<group>"; };
 		71D4EBB61B43E0AB00B2A3D2 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,6 +96,7 @@
 				71ADFC3F1B4655DD00875924 /* BeaconFinder.swift */,
 				716C9E1B1B42719200C9AB9A /* EventTableViewController.swift */,
 				716C9E1D1B4273B700C9AB9A /* ToDoItem.swift */,
+				71ADFC411B46961600875924 /* SwiftyJSON.swift */,
 				710866411B4228E100CE6090 /* AppDelegate.swift */,
 				71D4EBB61B43E0AB00B2A3D2 /* RootViewController.swift */,
 				710866431B4228E100CE6090 /* DebugViewController.swift */,
@@ -237,6 +240,7 @@
 				710866441B4228E100CE6090 /* DebugViewController.swift in Sources */,
 				716C9E1C1B42719200C9AB9A /* EventTableViewController.swift in Sources */,
 				716C9E1E1B4273B700C9AB9A /* ToDoItem.swift in Sources */,
+				71ADFC421B46961600875924 /* SwiftyJSON.swift in Sources */,
 				710866421B4228E100CE6090 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

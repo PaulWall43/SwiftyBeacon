@@ -22,22 +22,23 @@ class EventTableViewController: UITableViewController {
     //let rootViewController : RootViewController = RootViewController()
     
     func loadinitialData(){
-        //println(toDoItems)
-        var item1 = ToDoItem(title: "Vocabulary Lesson")
-        self.eventItems.addObject(item1)
-        
-        var item2 = ToDoItem(title: "Addition")
-        self.eventItems.addObject(item2)
-        
+//        //println(toDoItems)
+//        var item1 = ToDoItem(title: "Vocabulary Lesson")
+//        self.eventItems.addObject(item1)
+//        
+//        var item2 = ToDoItem(title: "Addition")
+//        self.eventItems.addObject(item2)
+//        
         var item3 = ToDoItem(title: "Mathematics")
         self.eventItems.addObject(item3)
-    }
-    
 
+    }
     
     override func viewDidLoad() {
         self.loadinitialData()
-        eventItems.addObjectsFromArray(informationSource.contentsArray)
+        println(informationSource.contentsArray)
+        var testToDoItem = ToDoItem(title: informationSource.contentsArray.firstObject as String)
+        eventItems.addObject(testToDoItem)
     }
     func getControllerArrayContents(sourceArray source: NSMutableArray){
         //eventItems.addObjectsFromArray(informationSource.contentsArray
