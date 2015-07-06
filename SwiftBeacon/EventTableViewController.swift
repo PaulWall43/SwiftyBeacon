@@ -50,6 +50,9 @@ class EventTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         /*If the flag is set*/
         //println(self.informationSource.currentEventModel.eventTopicsArray.count)
+        if(self.informationSource.currentEventModel.eventTopicsArray.count < 1){
+            self.navigationBar.title = "No current events :("
+        }
         return self.informationSource.currentEventModel.eventTopicsArray.count
         //return self.eventItems.count
     }
