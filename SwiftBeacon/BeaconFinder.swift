@@ -22,22 +22,20 @@ class BeaconFinder: NSObject, CLLocationManagerDelegate {
    var myBeaconRegion : CLBeaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "4568D9B6-F3F8-4E99-9AB6-350D92825A2E"), identifier:"com.ef.myRegion")
     var locationManager : CLLocationManager = CLLocationManager()
     var alreadyInRegion : Int = 0
-    internal var contentArray : NSMutableArray = []
+    let dataManager : DataManager = DataManager.SharedInstance
+    var currentRegion : String?
     
     private override init(){
         super.init()
         locationManager.delegate = self
         if (CLLocationManager.authorizationStatus() != CLAuthorizationStatus.AuthorizedWhenInUse) {
             locationManager.requestAlwaysAuthorization()
-            //println("requesting")
         }
         locationManager.startUpdatingLocation()
         locationManager.startMonitoringForRegion(myBeaconRegion)
         locationManager.startRangingBeaconsInRegion(myBeaconRegion)
         //locationManager(locationManager, didStartMonitoringForRegion: myBeaconRegion)
         requestNotificationAuth()
-        /*Test Call*/
-        //contentArray.addObject(EventModel(title: "John"))
     }
     
     func requestNotificationAuth(){
@@ -48,29 +46,36 @@ class BeaconFinder: NSObject, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
         locationManager.startRangingBeaconsInRegion(myBeaconRegion)
-        //println("DEnterR from Root
     }
     
     func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
         locationManager.stopRangingBeaconsInRegion(myBeaconRegion)
         notifyUser(description:"See ya later!")
         alreadyInRegion = 0;
-        //println("DExitR from Root")
     }
     
     func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
-        //println("Please")
-        var beacon :CLBeacon = CLBeacon()
+        var closestBeacon :CLBeacon = CLBeacon()
         if(beacons.count < 1){
             return
         }
+        closestBeacon = beacons[0] as CLBeacon
+        
+        //check for different region
+
         if(alreadyInRegion == 0){
-            notifyUser(description: "Welcome to your zone!")
-            sendUserInfo()
-            //println("notify from range")
+            notifyUser(description: "Welcome to your zone")
             alreadyInRegion++;
+            dataManager.getCurrentEventModel(closestBeacon.proximityUUID.UUIDString as String, didGetBeaconMajor: NSString(string: "\(closestBeacon.major)"), didGetBeaconMinor: NSString(string: "\(closestBeacon.minor)"))
+            currentRegion = NSString(string: "\(closestBeacon.major)\(closestBeacon.minor)")
+            return
         }
         
+        if(currentRegion != NSString(string: "\(closestBeacon.major)\(closestBeacon.minor)")){
+            notifyUser(description: "Weclome to your zone")
+            currentRegion = NSString(string: "\(closestBeacon.major)\(closestBeacon.minor)")
+            dataManager.getCurrentEventModel(closestBeacon.proximityUUID.UUIDString as String, didGetBeaconMajor: NSString(string: "\(closestBeacon.major)"), didGetBeaconMinor: NSString(string: "\(closestBeacon.minor)"))
+        }
     }
     
     func notifyUser(description aDescription: String){
@@ -81,38 +86,5 @@ class BeaconFinder: NSObject, CLLocationManagerDelegate {
         notification.alertAction = "Notifications are working"
         notification.soundName = UILocalNotificationDefaultSoundName
         UIApplication.sharedApplication().presentLocalNotificationNow(notification)
-    }
-    
-    func sendUserInfo(){
-        //create a file path to the json file
-        var jsonFilePath : String = NSBundle.mainBundle().pathForResource("testData", ofType: "json")!
-        //Create a data object from this file path
-        var jsonData : NSData = NSData(contentsOfFile: jsonFilePath)!
-        var json = JSON(data: jsonData)
-        if let employeeName = json["employees"][0]["firstName"].string {
-            contentArray.addObject(employeeName)
-        }
-        //println(contentArray)
-        //println("I'm here")
-        //set NSError to nil
-//        var jsonError : NSError?
-//        //Create a swift object of these objects
-//        var swiftObject : AnyObject = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.AllowFragments, error: &jsonError)!
-        //cast this down to a know type whatever it may be and log the result
-//        if let nsDictionaryObject = swiftObject as? NSDictionary {
-//            if let swiftDictionary = nsDictionaryObject as Dictionary? {
-//                println(swiftDictionary)
-//            }
-//        }
-//        if let nsArrayObject = swiftObject as? NSArray {
-//            if let swiftArray = nsArrayObject as Array? {
-//                println(swiftArray)
-//            }
-//        }
-        
-        /* Differet set of testing */
-//        var testToDoItem : ToDoItem = ToDoItem(title: "Get wrecked")
-//        contentArray.addObject(testToDoItem)
-        /* End of testing */
     }
 }

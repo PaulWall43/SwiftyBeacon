@@ -9,16 +9,17 @@
 import UIKit
 
 class EventModel: NSObject {
-    var title : String!
-    var descriptionOfEvent : String?
-    var dateOfEvent : NSDate?
     var beaconUUID : NSUUID?
     var beaconMajor: Int?
     var beaconMinor : Int?
-    var location : String?
-    var eventTopicsArray : NSMutableArray?
+    var title : String!
+    var descriptionOfEvent : String?
+    var dateOfEvent : String?
+    var locationOfEvent : String?
+    var eventTopicsArray : NSMutableArray = []
     var subTopic : Bool = false;
     var completed : Bool = false;
+    var happeningNow : Bool = false;
     
     init(title:String){
         super.init()

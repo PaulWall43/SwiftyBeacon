@@ -10,7 +10,7 @@ import UIKit
 
 class EventTopicModel: NSObject {
     var eventTopicTitle : String!
-    var eventSubTopicArray : NSMutableArray?
+    //var eventSubTopicArray : NSMutableArray?
     
     init(topicTitle:String){
         super.init()
