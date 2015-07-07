@@ -71,7 +71,6 @@ public struct JSON {
             self.init(NSNull())
         }
     }
-    
     /**
     Creates a JSON using the object.
     

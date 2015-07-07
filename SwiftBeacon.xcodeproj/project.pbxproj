@@ -14,6 +14,7 @@
 		7108664C1B4228E100CE6090 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7108664A1B4228E100CE6090 /* LaunchScreen.xib */; };
 		710866581B4228E100CE6090 /* SwiftBeaconTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710866571B4228E100CE6090 /* SwiftBeaconTests.swift */; };
 		710866621B422CA400CE6090 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 710866611B422CA400CE6090 /* CoreLocation.framework */; };
+		71110A241B4BCDA50000B718 /* ClassDateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71110A231B4BCDA50000B718 /* ClassDateModel.swift */; };
 		716C9E1C1B42719200C9AB9A /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716C9E1B1B42719200C9AB9A /* EventTableViewController.swift */; };
 		716C9E1E1B4273B700C9AB9A /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716C9E1D1B4273B700C9AB9A /* EventModel.swift */; };
 		719B0D881B46D45400712090 /* EventTopicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B0D871B46D45400712090 /* EventTopicModel.swift */; };
@@ -46,6 +47,7 @@
 		710866561B4228E100CE6090 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		710866571B4228E100CE6090 /* SwiftBeaconTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBeaconTests.swift; sourceTree = "<group>"; };
 		710866611B422CA400CE6090 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		71110A231B4BCDA50000B718 /* ClassDateModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassDateModel.swift; sourceTree = "<group>"; };
 		716C9E1B1B42719200C9AB9A /* EventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
 		716C9E1D1B4273B700C9AB9A /* EventModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		719B0D831B46D41000712090 /* SwiftBeacon-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftBeacon-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -100,14 +102,15 @@
 			children = (
 				71ADFC3F1B4655DD00875924 /* BeaconFinder.swift */,
 				716C9E1B1B42719200C9AB9A /* EventTableViewController.swift */,
+				71D4EBB61B43E0AB00B2A3D2 /* RootViewController.swift */,
 				716C9E1D1B4273B700C9AB9A /* EventModel.swift */,
 				71F8101F1B4A28570034286C /* DataManager.swift */,
 				719B0D871B46D45400712090 /* EventTopicModel.swift */,
 				71ADFC411B46961600875924 /* SwiftyJSON.swift */,
 				710866411B4228E100CE6090 /* AppDelegate.swift */,
-				71D4EBB61B43E0AB00B2A3D2 /* RootViewController.swift */,
 				710866431B4228E100CE6090 /* DebugViewController.swift */,
 				719B0D831B46D41000712090 /* SwiftBeacon-Bridging-Header.h */,
+				71110A231B4BCDA50000B718 /* ClassDateModel.swift */,
 				71B566671B44CBE0000258C9 /* testData.json */,
 				710866451B4228E100CE6090 /* Main.storyboard */,
 				710866481B4228E100CE6090 /* Images.xcassets */,
@@ -251,6 +254,7 @@
 				716C9E1E1B4273B700C9AB9A /* EventModel.swift in Sources */,
 				71ADFC421B46961600875924 /* SwiftyJSON.swift in Sources */,
 				71F810201B4A28570034286C /* DataManager.swift in Sources */,
+				71110A241B4BCDA50000B718 /* ClassDateModel.swift in Sources */,
 				710866421B4228E100CE6090 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
